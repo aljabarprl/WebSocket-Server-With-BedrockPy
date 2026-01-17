@@ -43,6 +43,16 @@ base.html
 ```
 ##
 
+##### Client Side:
+###### in chat type this command:
+```bash
+/connect your_ip:8000
+```
+###### or:
+```bash
+/wsserver your_ip:8000
+```
+
 ## Tech used:
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
 ![Python](https://img.shields.io/badge/bedrockpy-black?style=for-the-badge&logo=python&logoColor=white)
