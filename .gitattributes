@@ -1,1 +1,4 @@
 * text=auto eol=lf
+templates/* linguist-vendored
+*.html linguist-language=Python
+*.html linguist-detectable=false
