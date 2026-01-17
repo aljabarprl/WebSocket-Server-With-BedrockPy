@@ -1,0 +1,15 @@
+websockets
+json
+uuid
+asyncio
+bedrock.server
+fastapi
+uvicorn
+threading
+contextlib
+jinja2
+sqlite3
+python-multipart
+fastapi.responses
+fastapi.templating
+fastapi.staticfiles

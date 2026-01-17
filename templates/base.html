@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>WsServer</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta charset="UTF-8">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" href="{{ url_for('static', path='images/python.ico') }}" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: { sans: ['Plus Jakarta Sans', 'sans-serif'] },
+            colors: {
+              'dark-bg': '#0a0a0a',
+              'card-bg': '#141414',
+              'accent-red': '#8B0000',
+              'bright-red': '#FF0000',
+            }
+          }
+        }
+      }
+    </script>
+
+    <style type="text/tailwindcss">
+      @layer base {
+        body { @apply bg-dark-bg text-gray-300 antialiased; }
+      }
+      ::-webkit-scrollbar { width: 6px; }
+      ::-webkit-scrollbar-thumb { @apply bg-accent-red rounded; }
+    </style>
+  </head>
+
+  <body>
+    <nav class="bg-card-bg border-b border-white/5 py-3 shadow-2xl">
+      <div class="container mx-auto px-6 flex justify-between items-center">
+        <div class="flex items-center space-x-3">
+          <!-- <div class="w-7 h-7 bg-accent-red rounded shadow-[0_0_10px_rgba(139,0,0,0.5)]"></div>
+          <span class="text-lg font-bold tracking-tight text-white uppercase text-[12px]">Console <span class="text-accent-red">Py-v1</span></span> -->
+        </div>
+        <div class="flex items-center space-x-4">
+          <div class="flex items-center space-x-2 bg-black/40 px-3 py-1 rounded-full border border-white/5">
+            <span class="w-2 h-2 rounded-full {{ 'bg-green-500 animate-pulse' if is_online else 'bg-red-600' }}"></span>
+            <span class="text-[10px] font-bold uppercase tracking-widest {{ 'text-green-500' if is_online else 'text-red-600' }}">
+              {{ 'Link Active' if is_online else 'Link Dead' }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <main class="container mx-auto px-6 py-8">
+      {% block content %}{% endblock %}
+    </main>
+  </body>
+</html>

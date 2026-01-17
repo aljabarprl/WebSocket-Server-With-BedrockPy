@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="max-w-5xl mx-auto space-y-6">
+  
+  <div class="bg-card-bg p-5 rounded-lg border border-white/5 shadow-xl">
+    <h3 class="text-[10px] font-bold text-accent-red uppercase tracking-[0.2em] mb-4">Server Broadcast</h3>
+    <form action="/announce" method="POST" class="flex items-center gap-3">
+      <div class="relative flex-1">
+        <input type="text" name="announcement" placeholder="Type message to broadcast..." 
+          class="w-full bg-black/50 border border-white/10 rounded px-4 py-2 text-sm text-white focus:border-accent-red focus:ring-1 focus:ring-accent-red/50 outline-none transition-all" required>
+      </div>
+      <button type="submit" class="bg-accent-red hover:bg-bright-red text-white text-[11px] font-bold px-6 py-2 rounded transition-all active:scale-95 cursor-pointer tracking-widest shadow-lg">
+        SEND
+      </button>
+    </form>
+  </div>
+
+  <div class="bg-card-bg rounded-lg border border-white/5 overflow-hidden">
+    <div class="px-5 py-3 border-b border-white/5 bg-white/[0.02]">
+      <h3 class="text-[10px] font-bold text-gray-300 uppercase tracking-[0.2em]">Redemption History</h3>
+    </div>
+    
+    <div class="overflow-x-auto">
+      <table class="w-full text-left text-sm">
+        <thead class="text-[10px] text-accent-red uppercase tracking-widest bg-black/20">
+          <tr>
+            <th class="px-6 py-3 font-semibold">Username</th>
+            <th class="px-6 py-3 font-semibold text-center">Promotion</th>
+            <th class="px-6 py-3 font-semibold text-right">Timestamp</th>
+            <th class="px-6 py-3 font-semibold text-center">Action</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-white/5">
+          {% for r in redemptions %}
+            <tr class="hover:bg-white/[0.02] transition-colors">
+              <td class="px-6 py-3 font-semibold text-gray-300">
+                {{ r.player_name }}
+              </td>
+              <td class="px-6 py-3 text-center text-xs">
+                <span class="bg-gray-300/10 text-gray-300 border border-gray-300/20 px-2 py-0.5 rounded uppercase text-[9px]">
+                  {{ r.code }}
+                </span>
+              </td>
+              <td class="px-6 py-3 text-right ttext-gray-300 text-[11px]">
+                {{ r.claimed_at }}
+              </td>
+              <td class="px-6 py-3 text-center">
+                <form action="/delete/{{ r.id }}" method="POST" onsubmit="return confirm('Purge record?')">
+                  <button type="submit" class="inline-flex items-center justify-center w-4 h-4 rounded border border-red-900/30 bg-red-900/10 text-accent-red hover:bg-red-600 hover:text-white transition-all group">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                  </button>
+                </form>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}
