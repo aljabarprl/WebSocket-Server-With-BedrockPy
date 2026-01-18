@@ -20,10 +20,6 @@ venv\Scripts\activate
 ```bash
 python server.py
 ```
-###### Or Run on development:
-```bash
-npm run dev
-```
 ###### Website port:
 ```bash
 3002
